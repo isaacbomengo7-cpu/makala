@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Makala - Petites annonces</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #222;
+    }
+
+    header {
+      background: #123c32;
+      color: white;
+      padding: 22px 16px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    header p {
+      margin-bottom: 0;
+      color: #d3e7dd;
+    }
+
+    .search {
+      padding: 18px 15px;
+      background: white;
+    }
+
+    .search input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    main {
+      padding: 16px;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 21px;
+    }
+
+    .categories {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+
+    .categories button {
+      border: 1px solid #cbd5d1;
+      background: white;
+      padding: 10px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .categories button.active {
+      background: #17634d;
+      color: white;
+      border-color: #17634d;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 7px #00000012;
+    }
+
+    .product-image {
+      height: 130px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 55px;
+      background: #e7eee9;
+    }
+
+    .info {
+      padding: 12px;
+    }
+
+    .info h3 {
+      font-size: 15px;
+      margin: 0 0 8px;
+    }
+
+    .price {
+      color: #17634d;
+      font-weight: bold;
+      font-size: 17px;
+    }
+
+    .location {
+      color: #777;
+      font-size: 12px;
+      margin: 8px 0;
+    }
+
+    .contact {
+      display: block;
+      background: #17634d;
+      color: white;
+      text-decoration: none;
+      text-align: center;
+      padding: 10px;
+      border-radius: 7px;
+      font-size: 13px;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 30px 10px;
+      color: #666;
+    }
+
+    footer {
+      text-align: center;
+      background: #123c32;
+      color: white;
+      padding: 20px;
+      margin-top: 30px;
+      font-size: 13px;
+    }
+
+    @media (min-width: 650px) {
+      .products {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🛍️ Makala</h1>
+    <p>Les bonnes affaires près de chez vous.</p>
+  </header>
+
+  <div class="search">
+    <input
+      type="search"
+      id="search"
+      placeholder="Rechercher un produit..."
+      aria-label="Rechercher un produit"
+    >
+  </div>
+
+  <main>
+    <h2>Catégories</h2>
+
+    <div class="categories" id="categories">
+      <button class="active" data-category="Tous">Tous</button>
+      <button data-category="Téléphones">📱 Téléphones</button>
+      <button data-category="Informatique">💻 Informatique</button>
+      <button data-category="Vêtements">👕 Vêtements</button>
+      <button data-category="Maison">🏠 Maison</button>
+    </div>
+
+    <h2>Dernières annonces</h2>
+
+    <div class="products" id="products">
+
+      <article class="card" data-category="Téléphones"
+        data-name="Samsung Galaxy">
+        <div class="product-image">📱</div>
+        <div class="info">
+          <h3>Samsung Galaxy</h3>
+          <div class="price">120 $</div>
+          <p class="location">📍 Bukavu</p>
+          <a class="contact" href="#" onclick="demo(event)">
+            Contacter le vendeur
+          </a>
+        </div>
+      </article>
+
+      <article class="card" data-category="Informatique"
+        data-name="Ordinateur portable">
+        <div class="product-image">💻</div>
+        <div class="info">
+          <h3>Ordinateur portable</h3>
+          <div class="price">250 $</div>
+          <p class="location">📍 Bukavu</p>
+          <a class="contact" href="#" onclick="demo(event)">
+            Contacter le vendeur
+          </a>
+        </div>
+      </article>
+
+      <article class="card" data-category="Vêtements"
+        data-name="Chaussures">
+        <div class="product-image">👟</div>
+        <div class="info">
+          <h3>Chaussures</h3>
+          <div class="price">25 $</div>
+          <p class="location">📍 Bukavu</p>
+          <a class="contact" href="#" onclick="demo(event)">
+            Contacter le vendeur
+          </a>
+        </div>
+      </article>
+
+      <article class="card" data-category="Maison"
+        data-name="Fauteuil">
+        <div class="product-image">🪑</div>
+        <div class="info">
+          <h3>Fauteuil</h3>
+          <div class="price">45 $</div>
+          <p class="location">📍 Bukavu</p>
+          <a class="contact" href="#" onclick="demo(event)">
+            Contacter le vendeur
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Makala. Projet de démonstration.</p>
+  </footer>
+
+  <script>
+    const search = document.getElementById("search");
+    const products = [...document.querySelectorAll(".card")];
+    const buttons = document.querySelectorAll(
+      "#categories button"
+    );
+
+    let selectedCategory = "Tous";
+
+    function filterProducts() {
+      const term = search.value.toLowerCase();
+      let visible = 0;
+
+      products.forEach(product => {
+        const name = product.dataset.name.toLowerCase();
+        const category = product.dataset.category;
+
+        const matchesSearch = name.includes(term);
+        const matchesCategory =
+          selectedCategory === "Tous" ||
+          selectedCategory === category;
+
+        const show = matchesSearch && matchesCategory;
+        product.style.display = show ? "" : "none";
+
+        if (show) visible++;
+      });
+
+      let empty = document.getElementById("empty");
+
+      if (visible === 0) {
+        if (!empty) {
+          empty = document.createElement("p");
+          empty.id = "empty";
+          empty.className = "empty";
+          empty.textContent = "Aucune annonce trouvée.";
+          document.getElementById("products").appendChild(empty);
+        }
+      } else if (empty) {
+        empty.remove();
+      }
+    }
+
+    search.addEventListener("input", filterProducts);
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        buttons.forEach(b => b.classList.remove("active"));
+        button.classList.add("active");
+        selectedCategory = button.dataset.category;
+        filterProducts();
+      });
+    });
+
+    function demo(event) {
+      event.preventDefault();
+      alert("Contact vendeur : fonctionnalité à ajouter.");
+    }
+  </script>
+
+</body>
+	</html>
+	
