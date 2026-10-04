@@ -305,7 +305,34 @@
       alert("Contact vendeur : fonctionnalité à ajouter.");
     }
   </script>
+  </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL = "https://rojlavedngqauzwxipyx.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_hatrToNN0Z1SCM3aY8DyNg_8hvh2Yry";
+
+    const supabase = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+    async function testerConnexion() {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*");
+
+      if (error) {
+        alert("Erreur : " + error.message);
+        return;
+      }
+
+      alert("Connexion réussie ! Produits : " + data.length);
+    }
+
+    testerConnexion();
+  </script>
 </body>
 	</html>
 	
